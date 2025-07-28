@@ -18,10 +18,14 @@ function displayBooks() {
     myLibrary.forEach((book, index) => {
         const bookDiv = document.createElement("div");
         bookDiv.classList.add("book");
+        bookDiv.id = book.id;
 
         bookDiv.innerHTML = `
-            <h3>${book.title}</h3>
-            <p>${book.pageNum}</p>
+            <h3 class="title">${book.title}</h3>
+            <div>
+              <p>${book.pageNum} pgs.</p>
+              <button type="button" id="delete-btn">del</button>
+            </div>
         `;
 
         libraryContainer.appendChild(bookDiv);
@@ -30,9 +34,9 @@ function displayBooks() {
 
 const addBtn = document.getElementById("add-book-btn");
 const dialog = document.getElementById("book-dialog");
-const form = document.getElementById("book-form");
 const cancelBtn = document.getElementById("cancel-btn");
-const submitBtn = document.getElementById("submit-btn")
+const submitBtn = document.getElementById("submit-btn");
+const deleteBtn = document.getElementById("delete-btn");
 
 addBtn.addEventListener("click", () => {
     dialog.showModal();
@@ -50,4 +54,6 @@ submitBtn.addEventListener("click", () => {
     displayBooks();
 });
 
-
+deleteBtn.addEventListener("click", () => {
+    const book = document.getElementById("id")
+});

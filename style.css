@@ -16,13 +16,39 @@
 .book {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     color: white;
     background-color: rgb(83, 80, 255);
     border-radius: 10px;
     width: 200px;
     height: 250px;
+    padding: 20px;
+}
+
+.book .title { 
+  margin-bottom: auto;
+}
+
+.book div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.book button {
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  color: rgb(83, 80, 255);
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+}
+
+.book button:active {
+  transform: scale(0.95);
 }
 
 #add-book-btn {

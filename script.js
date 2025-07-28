@@ -28,14 +28,17 @@ function displayBooks() {
     });
 }
 
-document.getElementById("add-book-btn").addEventListener("click", () => {
-    addBookToLibrary("hi", 24);
-    addBookToLibrary("hi", 24);
-    addBookToLibrary("hi", 24);
-    addBookToLibrary("hi", 24);
-    addBookToLibrary("hi", 24);
-    addBookToLibrary("hi", 24);
+const addBtn = document.getElementById("add-book-btn");
+const dialog = document.getElementById("book-dialog");
+const form = document.getElementById("book-form");
+const cancelBtn = document.getElementById("cancel-btn");
 
-    displayBooks();
+addBtn.addEventListener("click", () => {
+    dialog.showModal();
 });
+
+cancelBtn.addEventListener("click", () => {
+    dialog.close();
+});
+
 

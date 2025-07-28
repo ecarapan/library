@@ -47,3 +47,65 @@
 #add-book-btn:active {
   transform: scale(0.95);
 }
+
+/* Style the dialog box itself */
+#book-dialog {
+  border: none;
+  border-radius: 12px;
+  padding: 24px;
+  background-color: white;
+}
+
+#book-dialog[open] {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#book-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.4); 
+  backdrop-filter: blur(1px);    
+}
+
+#book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#book-form input {     
+  border: none;
+  background-color: #e9e9e9;
+  border-radius: 6px;
+  height: 30px;
+  flex: 1;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#book-form label {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#book-form .form-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#book-form .form-btns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+#book-form button {
+  background-color: rgb(83, 80, 255);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  width: 100px;
+  height: 30px;
+}
+

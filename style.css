@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* border: 1px solid red; */
+}
+
+#library {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 200px);
+    justify-content: center;
+    gap: 16px;
+    padding: 50px 400px;
+}
+
+.book {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: rgb(83, 80, 255);
+    border-radius: 10px;
+    width: 200px;
+    height: 250px;
+}
+
+#add-book-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    background-color: rgb(83, 80, 255);
+    color: white;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    border: none;
+    font-size: 40px;
+    cursor: pointer;
+}   
+
+#add-book-btn:hover {
+  transform: scale(0.99);
+}
+
+#add-book-btn:active {
+  transform: scale(0.95);
+}

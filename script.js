@@ -32,6 +32,7 @@ const addBtn = document.getElementById("add-book-btn");
 const dialog = document.getElementById("book-dialog");
 const form = document.getElementById("book-form");
 const cancelBtn = document.getElementById("cancel-btn");
+const submitBtn = document.getElementById("submit-btn")
 
 addBtn.addEventListener("click", () => {
     dialog.showModal();
@@ -39,6 +40,14 @@ addBtn.addEventListener("click", () => {
 
 cancelBtn.addEventListener("click", () => {
     dialog.close();
+});
+
+submitBtn.addEventListener("click", () => {
+    const title = document.getElementById("book-title").value;
+    const pageNum = document.getElementById("book-page-count").value;
+
+    addBookToLibrary(title, pageNum);
+    displayBooks();
 });
 
 

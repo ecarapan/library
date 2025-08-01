@@ -4,6 +4,11 @@ function Book(title, pageNum) {
     this.title = title;
     this.pageNum = pageNum;
     this.id = crypto.randomUUID();
+    this.isRead = false;
+}
+
+Book.prototype.toggleRead = function () {
+    this.isRead = !this.isRead;
 }
 
 function addBookToLibrary(title, pageNum) {
@@ -20,14 +25,36 @@ function displayBooks() {
         bookDiv.classList.add("book");
 
         bookDiv.innerHTML = `
-            <h3 class="title">${book.title}</h3>
+            <div>
+              <h3 class="title">${book.title}</h3>
+              <button type="button" data-id="${book.id}" class="read-button">Mark as Read</button>
+            </div>
             <div>
               <p>${book.pageNum} pgs.</p>
-              <button type="button" data-id="${book.id}">del</button>
+              <button type="button" data-id="${book.id}" class="delete-button">del</button>
             </div>
         `;
 
-        const deleteBtn = bookDiv.querySelector("button");
+        const readBtn = bookDiv.querySelector(".read-button");
+
+        if (book.isRead) {
+            bookDiv.classList.add("read");
+            readBtn.textContent = "Mark as Unread"
+        }
+
+        readBtn.addEventListener("click", (e) => {
+            const bookId = e.target.dataset.id;
+            book.toggleRead();
+            if (book.isRead) {
+                bookDiv.classList.add("read");
+                readBtn.textContent = "Mark as Unread"
+            } else {
+                bookDiv.classList.remove("read");
+                readBtn.textContent = "Mark as Read"
+            }
+        })
+
+        const deleteBtn = bookDiv.querySelector(".delete-button");
         deleteBtn.addEventListener("click", (e) => {
             const bookId = e.target.dataset.id;
             myLibrary = myLibrary.filter(book => book.id !== bookId);

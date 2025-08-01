@@ -16,8 +16,7 @@
 .book {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: space-between;
     color: white;
     background-color: rgb(83, 80, 255);
     border-radius: 10px;
@@ -38,17 +37,20 @@
 }
 
 .book button {
-  width: 25px;
-  height: 25px;
   background-color: white;
   color: rgb(83, 80, 255);
   font-weight: bold;
   border: none;
   border-radius: 5px;
+  padding: 5px 5px;
 }
 
 .book button:active {
   transform: scale(0.95);
+}
+
+.read {
+  filter: brightness(80%);
 }
 
 #add-book-btn {
@@ -134,4 +136,3 @@
   width: 100px;
   height: 30px;
 }
-

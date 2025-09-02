@@ -1,26 +1,43 @@
-let myLibrary = [];
+class Book {
+    constructor(title, pageNum) {
+        this.title = title;
+        this.pageNum = pageNum;
+        this.id = crypto.randomUUID();
+        this.isRead = false;
+    }
 
-function Book(title, pageNum) {
-    this.title = title;
-    this.pageNum = pageNum;
-    this.id = crypto.randomUUID();
-    this.isRead = false;
+    toggleRead() {
+        this.isRead = !this.isRead;
+    }
+
 }
 
-Book.prototype.toggleRead = function () {
-    this.isRead = !this.isRead;
+class Library {
+    constructor() {
+        this._books = [];
+    }
+
+    addBook(title, pageNum) {
+        const book = new Book(title, pageNum);
+        this._books.push(book);
+    }
+
+    deleteBook(id) {
+        this._books = this.books.filter(book => book.id !== id);
+    }
+
+    get books() {
+        return this._books;
+    }
 }
 
-function addBookToLibrary(title, pageNum) {
-    const book = new Book(title, pageNum);
-    myLibrary.push(book);
-}
+const myLibrary = new Library();
 
 function displayBooks() {
     const libraryContainer = document.getElementById("library")
     libraryContainer.innerHTML = "";
 
-    myLibrary.forEach((book, index) => {
+    myLibrary.books.forEach((book, index) => {
         const bookDiv = document.createElement("div");
         bookDiv.classList.add("book");
 
@@ -57,14 +74,12 @@ function displayBooks() {
         const deleteBtn = bookDiv.querySelector(".delete-button");
         deleteBtn.addEventListener("click", (e) => {
             const bookId = e.target.dataset.id;
-            myLibrary = myLibrary.filter(book => book.id !== bookId);
+            myLibrary.deleteBook(bookId);
             displayBooks();
         });
 
         libraryContainer.appendChild(bookDiv);
     });
-
-
 }
 
 const addBtn = document.getElementById("add-book-btn");
@@ -84,6 +99,6 @@ submitBtn.addEventListener("click", () => {
     const title = document.getElementById("book-title").value;
     const pageNum = document.getElementById("book-page-count").value;
 
-    addBookToLibrary(title, pageNum);
+    myLibrary.addBook(title, pageNum);
     displayBooks();
 });

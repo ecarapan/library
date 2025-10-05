@@ -4,7 +4,7 @@ export function setUpLibraryController(library) {
     const addBtn = document.getElementById("add-book-btn");
     const dialog = document.getElementById("book-dialog");
     const cancelBtn = document.getElementById("cancel-btn");
-    const submitBtn = document.getElementById("submit-btn");
+    const bookForm = document.getElementById("book-form");
 
     addBtn.addEventListener("click", () => {
         dialog.showModal();
@@ -14,10 +14,40 @@ export function setUpLibraryController(library) {
         dialog.close();
     });
 
-    submitBtn.addEventListener("click", () => {
-        const title = document.getElementById("book-title").value;
-        const pageNum = document.getElementById("book-page-count").value;
+    bookForm.addEventListener("submit", () => {
+        const bookTitle = document.getElementById("book-title");
+        const bookPageCount = document.getElementById("book-page-count");
 
+        bookTitle.setCustomValidity("");
+        bookPageCount.setCustomValidity("");
+
+        if (bookTitle.validity.valueMissing) {
+            bookTitle.setCustomValidity("A title must be entered!");
+            bookTitle.reportValidity();
+            event.preventDefault();
+            return;
+        }
+
+        if (bookPageCount.validity.valueMissing) {
+            bookPageCount.setCustomValidity(
+                "Please enter how many pages the book has!",
+            );
+            bookPageCount.reportValidity();
+            event.preventDefault();
+            return;
+        }
+
+        if (bookPageCount.validity.rangeOverflow) {
+            bookPageCount.setCustomValidity(
+                `Page count can’t be more than ${bookPageCount.max}.`,
+            );
+            bookPageCount.reportValidity();
+            event.preventDefault();
+            return;
+        }
+
+        const title = bookTitle.value;
+        const pageNum = bookPageCount.value;
         library.addBook(title, pageNum);
         renderLibrary(library);
     });

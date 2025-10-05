@@ -1,3 +1,4 @@
+import "./style.css";
 import { Library } from "./models/library.js";
 import { setUpLibraryController } from "./controllers/library-controller.js";
 import { setupBookController } from "./controllers/book-controller.js";
